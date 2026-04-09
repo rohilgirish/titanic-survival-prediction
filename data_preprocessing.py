@@ -13,7 +13,7 @@ os.makedirs('plots', exist_ok=True)
 sns.set_theme(style="darkgrid")
 
 
-# Step 1: Load & Explore
+#1: Load & Explore
 def load_data(filepath):
     """Load the dataset and print basic info."""
     df = pd.read_csv(filepath)
@@ -27,7 +27,7 @@ def load_data(filepath):
     return df
 
 
-# Step 2: Visualize Missing Values (Before)
+#2: Visualize Missing Values (Before)
 def plot_missing_before(df):
     """Save a heatmap of missing values in the original dataset."""
     plt.figure(figsize=(12, 5))
@@ -39,7 +39,7 @@ def plot_missing_before(df):
     print("\n[Saved] plots/missing_before.png")
 
 
-# Step 3: Handle Missing Values
+#3: Handle Missing Values
 def handle_missing(df):
     """Impute missing values using appropriate strategies per column."""
     print("\n" + "=" * 55)
@@ -63,7 +63,7 @@ def handle_missing(df):
     return df
 
 
-# Step 4: Visualize Missing Values (After)
+#4: Visualize Missing Values (After)
 def plot_missing_after(df):
     """Save a heatmap of missing values after imputation."""
     plt.figure(figsize=(12, 5))
@@ -75,7 +75,7 @@ def plot_missing_after(df):
     print("\n[Saved] plots/missing_after.png")
 
 
-# Step 5: Encode Categorical Features
+#5: Encode Categorical Features
 def encode_features(df):
     """Convert text categories to numerical representations."""
     print("\n" + "=" * 55)
@@ -99,7 +99,7 @@ def encode_features(df):
     return df
 
 
-# Step 6: Outlier Detection & Removal
+#6: Outlier Detection & Removal
 def remove_outliers(df):
     """Detect and remove outliers in 'Fare' using the IQR method."""
     print("\n" + "=" * 55)
@@ -140,7 +140,7 @@ def remove_outliers(df):
     return df
 
 
-# Step 7: Feature Scaling
+#7: Feature Scaling
 def scale_features(df):
     """Standardize numerical features to zero mean and unit variance."""
     print("\n" + "=" * 55)
@@ -155,7 +155,7 @@ def scale_features(df):
     return df
 
 
-# Step 8: Feature Distributions
+# 8: Feature Distributions
 def plot_distributions(df):
     """Plot histograms of all numerical features."""
     df.hist(figsize=(12, 8), bins=20, color='steelblue', edgecolor='white')
@@ -166,7 +166,7 @@ def plot_distributions(df):
     print("\n[Saved] plots/distributions.png")
 
 
-# Step 9: Correlation Heatmap
+#9: Correlation Heatmap
 def plot_correlation(df):
     """Plot a heatmap showing correlations between all features."""
     # Ensure only numeric columns are used
@@ -185,31 +185,6 @@ def plot_correlation(df):
     plt.savefig('plots/correlation.png', dpi=150)
     plt.close()
     print("[Saved] plots/correlation.png")
-
-
-# Step 10: Bonus — Logistic Regression Model
-def run_baseline_model(df):
-    """Train a basic Logistic Regression to validate the cleaned data."""
-    print("\n" + "=" * 55)
-    print("BONUS STEP: Baseline Logistic Regression Model")
-    print("=" * 55)
-
-    X = df.drop('Survived', axis=1)
-    y = df['Survived']
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-
-    model = LogisticRegression(max_iter=500)
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-
-    acc = accuracy_score(y_test, y_pred)
-    print(f"\n  Train size: {len(X_train)} | Test size: {len(X_test)}")
-    print(f"  Accuracy: {acc * 100:.2f}%")
-    print("\n  Classification Report:")
-    print(classification_report(y_test, y_pred, target_names=['Did Not Survive', 'Survived']))
 
 
 # Main Pipeline
@@ -247,8 +222,5 @@ if __name__ == "__main__":
     # Save cleaned dataset
     df.to_csv('Cleaned_Titanic_Data.csv', index=False)
     print("\n  Cleaned data saved -> Cleaned_Titanic_Data.csv")
-
-    # Bonus: run a quick model to show preprocessing worked
-    run_baseline_model(df)
 
     print("\nDone! All steps complete. Check the 'plots/' folder for visualizations.")
