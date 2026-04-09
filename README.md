@@ -305,9 +305,6 @@ IQR is non-parametric and works reliably on skewed data. Z-score assumes a Gauss
 **Standardization vs Normalization**
 StandardScaler (z-score standardization) is preferred when data may contain outliers or does not follow a normal distribution. MinMaxScaler (normalization to [0, 1]) is sensitive to extreme values and better suited to data that is already normally distributed.
 
-**Baseline Model Validation**
-Training a simple model on cleaned data is a best practice to verify the preprocessing was applied correctly before investing time in complex model development.
-
 ---
 
 ## How to Run
@@ -345,5 +342,3 @@ python data_preprocessing.py
 
 ---
 
-*ElevateLabs Machine Learning Internship — Task 1*
-*Submitted: April 2026*
