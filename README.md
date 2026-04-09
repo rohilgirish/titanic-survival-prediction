@@ -277,47 +277,6 @@ plt.savefig('plots/correlation.png')
 
 ---
 
-### Bonus Step — Baseline Logistic Regression Model
-
-Although a predictive model was not required for this task, a simple Logistic Regression was trained on the cleaned dataset to validate the preprocessing pipeline. A model that trains and produces reasonable accuracy is direct confirmation that the data is correctly structured and clean.
-
-```python
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
-
-X = df.drop('Survived', axis=1)
-y = df['Survived']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-model = LogisticRegression(max_iter=500)
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-```
-
-**Results:**
-
-| Metric | Value |
-|---|---|
-| Training samples | 620 |
-| Test samples | 155 |
-| Overall accuracy | 75.48% |
-
-```
-Classification Report:
-
-                 Precision   Recall   F1-Score   Support
-Did Not Survive   0.77        0.86     0.81        95
-Survived          0.73        0.58     0.65        60
-
-Accuracy                               0.75       155
-```
-
-A 75% baseline accuracy with no feature engineering or hyperparameter tuning confirms the preprocessing pipeline is correct and the data is ready for further modelling.
-
----
-
 ## Before vs After Comparison
 
 | Property | Before Preprocessing | After Preprocessing |
