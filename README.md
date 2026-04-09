@@ -1,6 +1,5 @@
 # Task 1: Data Cleaning and Preprocessing
 
-**ElevateLabs Machine Learning Internship**
 **Dataset:** Titanic Passenger Survival Dataset
 
 
