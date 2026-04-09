@@ -2,7 +2,7 @@
 
 **ElevateLabs Machine Learning Internship**
 **Dataset:** Titanic Passenger Survival Dataset
-*
+
 
 ---
 
